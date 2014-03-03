@@ -1,18 +1,22 @@
 #!/bin/bash
 
+fatal() {
+  echo $1
+  exit 1
+}
 
 if [ ! -n "$WERCKER_SLACK_NOTIFY_SUBDOMAIN" ]; then
 # fatal causes the wercker interface to display the error without the need to
 # expand the step
-  fatal 'Please specify the subdomain property'
+  fatal "Please specify the subdomain property"
 fi
 
 if [ ! -n "$WERCKER_SLACK_NOTIFY_TOKEN" ]; then
-  fatal 'Please specify token property'
+  fatal "Please specify token property"
 fi
 
 if [ ! -n "$WERCKER_SLACK_NOTIFY_CHANNEL" ]; then
-  fatal 'Please specify a channel'
+  fatal "Please specify a channel"
 fi
 
 if [[ $WERCKER_SLACK_NOTIFY_CHANNEL == \#* ]]; then
